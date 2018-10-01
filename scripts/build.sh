@@ -9,10 +9,11 @@ PATH_BUILD=${3-"./docs"} #path to build directory
 PATH_TD_BUILD=$PATH_BUILD/build
 PATH_STATIC=$PATH_CONFIG/static
 
+
 if [ -d "$PATH_BUILD" ]; then
   ## copy static files into gitbook before
   read -p "Preparing build, sure you want to rm -fr $PATH_BUILD? (press enter, or alt+c to cancel)" -n 1 -r
-  rm -fr $PATH_BUILD
+  git clean -fx $PATH_BUILD
 fi
 
 
@@ -47,6 +48,25 @@ fi
 $PATH_DOC_UTIL/node_modules/.bin/gitbook install $PATH_TD_BUILD
 $PATH_DOC_UTIL/node_modules/.bin/gitbook build $PATH_TD_BUILD
 
+# checkout to the gh-pages branch
+git checkout -b gh-pages
+
+# pull the latest updates
+git pull origin gh-pages --rebase
+
 # cp $PATH_DOC_UTIL/theme/index.html ./index.html
 cp -a $PATH_TD_BUILD/_book/. .
-rm -fr $PATH_BUILD
+git clean -fx node_modules
+git clean -fx $PATH_BUILD
+
+# add all files
+git add .
+
+# commit
+git commit -a -m "Update docs"
+
+# push to the origin
+git push origin gh-pages
+
+# checkout to the master branch
+git checkout master
