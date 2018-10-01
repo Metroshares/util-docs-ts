@@ -7,14 +7,20 @@ Open terminal and CD to the root directory of your project.
 cd ./path/to/project
 ```
 
+Create and switch to `gh-pages` branch in your repo
+```
+git checkout --branch gh-pages
+```
+
 ## Create Directories
 ```bash
-mkdir PATH_CONFIG
+mkdir .docs
 ```
+This is our documentation config directory. It should only ever exist in the `gh-pages` branch of your repository, do not merge it into master.
 
 ## Add submodule
 ```bash
-git submodule add https://github.com/EOSIO/book-ts.git PATH_CONFIG/book
+git submodule add https://github.com/EOSIO/book-ts.git .docs/book
 ```
 
 ## Add scripts to project's `package.json`
@@ -69,8 +75,8 @@ npm run PATH_CONFIG-serve
 ```
 
 ## Typescript Versioning
-| `TypeScript >= 2.9.1` | `TypeDoc ^0.12.0` _default_ |
-| `TypeScript <= 2.9.0` | `TypeDoc < 0.12.0 ` |
+- `TypeScript >= 2.9.1 uses TypeDoc ^0.12.0` _default_ 
+- `TypeScript <= 2.9.0 uses TypeDoc < 0.12.0 `
 
 ## Doc Scripts
 
