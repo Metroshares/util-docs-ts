@@ -47,6 +47,6 @@ fi
 $PATH_DOC_UTIL/node_modules/.bin/gitbook install $PATH_TD_BUILD
 $PATH_DOC_UTIL/node_modules/.bin/gitbook build $PATH_TD_BUILD
 
-cp $PATH_DOC_UTIL/theme/index.html ./index.html
-cp -a $PATH_TD_BUILD/_book/. $PATH_BUILD
-rm -fr $PATH_TD_BUILD
+# cp $PATH_DOC_UTIL/theme/index.html ./index.html
+cp -a $PATH_TD_BUILD/_book/. .
+rm -fr $PATH_BUILD
