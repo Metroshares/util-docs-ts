@@ -9,14 +9,9 @@ Open terminal and CD to the root directory of your project.
 cd ./path/to/project
 ```
 
-## Create Directories
-```bash
-mkdir PATH_CONFIG
-```
-
 ## Add submodule
 ```bash
-git submodule add https://github.com/EOSIO/book-ts.git PATH_CONFIG/book
+git submodule add https://github.com/EOSIO/book-ts.git .docs
 ```
 
 ## Add scripts to project's `package.json`
@@ -24,10 +19,10 @@ git submodule add https://github.com/EOSIO/book-ts.git PATH_CONFIG/book
 ...
 "scripts" : {
   ...
-  "PATH_CONFIG": "sh ./PATH_CONFIG/book/scripts/install.sh && sh ./PATH_CONFIG/book/scripts/build-and-serve.sh",
-  "PATH_CONFIG-build": "sh ./PATH_CONFIG/book/scripts/build.sh",
-  "PATH_CONFIG-serve": "sh ./PATH_CONFIG/book/scripts/serve.sh",
-  "PATH_CONFIG-init": "sh ./PATH_CONFIG/book/scripts/init.sh"
+  "docs": "sh ./docs/book/scripts/install.sh && sh ./docs/book/scripts/build-and-serve.sh",
+  "docs-build": "sh ./docs/book/scripts/build.sh",
+  "docs-serve": "sh ./docs/book/scripts/serve.sh",
+  "docs-init": "sh ./docs/book/scripts/init.sh"
 },
 ...
 ```
@@ -62,7 +57,7 @@ In the root of your project, modify **name, target, module** as needed.
 If on TypeScript >= 2.9.1
 
 ```bash
-npm run PATH_CONFIG-init
+npm run docs-init
 ```
 _only run once!_
 
@@ -72,25 +67,25 @@ _Presently only support TypeScript 2.9.1+_
 
 ## build
 ```bash
-npm run PATH_CONFIG-build
+npm run docs-build
 ```
 
 ## serve locally
 ```bash
-npm run PATH_CONFIG-serve
+npm run docs-serve
 ```
 
 # Conventions
 
-## PATH_CONFIG Filesystem Convention (strict)
-- A `./PATH_CONFIG` directory should be in the root directory of your project
-- If you wish to have static markdown files, include them in `./PATH_CONFIG/static`, they are ordered alphanumerically, so number the pages to control order.
-- `./PATH_CONFIG/build` directory will be created by build scripts.
+## docs Filesystem Convention (strict)
+- A `./docs` directory should be in the root directory of your project
+- If you wish to have static markdown files, include them in `./docs/static`, they are ordered alphanumerically, so number the pages to control order.
+- `./docs/build` directory will be created by build scripts.
 - Compliance is easiest when location of source code is `./src`
 ```
 /project
   package.json
-  /PATH_CONFIG
+  /docs
     /static
     /build
   /src
@@ -106,29 +101,29 @@ Execute these commands from the root directory of your project.
 
 ## AutoRun: Install, Build & Serve
 ```
-npm run PATH_CONFIG
+npm run docs
 ```
 
 ## install
 ```
-npm run PATH_CONFIG-install
+npm run docs-install
 ```
 
 ## Build
 ```
-npm run PATH_CONFIG-build
+npm run docs-build
 ```
 
-## Serve PATH_CONFIG Locally
+## Serve docs Locally
 ```
-npm run PATH_CONFIG-serve
+npm run docs-serve
 ```
 
 # Todo
 - Convert Bash setup scripts to JS or GO
-- Compile to Binary
+- NPM Package
 - Standardize a `eosio.book.json` (Typedoc and gitbook default overwrides)
-- `eosbook init` (replaces `npm run PATH_CONFIG-install` and adds scaffolding)
+- `eosbook init` (replaces `npm run docs-install` and adds scaffolding)
 - Remove Submodule dependencies
 - Standardize language support.
 - Implement a multi-book for suite releases.
