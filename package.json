@@ -1,26 +1,16 @@
 {
-  "name": "test-docs",
-  "version": "2.9.1",
+  "name": "eosio-book-ts",
+  "version": "0.0.1",
   "main": "README.md",
-  "scripts": {
-    "build": "sh ./scripts/build.sh",
-    "serve": "sh ./scripts/serve.sh",
-    "build-serve": "sh ./scripts/build-and-serve.sh"
-  },
-  "author": "dskvr",
+  "scripts": {},
+  "author": "Block.One",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dskvr/test-docs.git"
+    "url": "https://github.com/EOSIO/eosio-book-ts"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "gitbook-cli": "2.3.2",
-    "gitbook-plugin-page-toc": "^1.1.0",
-    "tslint": "^5.11.0",
-    "tslint-eslint-rules": "^5.4.0",
-    "typedoc": "0.12.0",
-    "typedoc-plugin-external-module-name": "^1.1.3",
-    "typedoc-plugin-markdown": "1.1.13",
-  }
+  "dependencies": {
+    "gitbook-cli": "2.3.2"
+  },
+  "devDependencies": {}
 }
