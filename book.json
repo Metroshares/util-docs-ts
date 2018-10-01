@@ -1,8 +1,7 @@
 {
   "plugins": [
     "page-toc",
-    "custom-header-next@git+https://github.com/dskvr/gitbook-plugin-custom-header-next.git",
-    "link-fixer"
+    "custom-header-next@git+https://github.com/dskvr/gitbook-plugin-custom-header-next.git"
   ],
   "pluginsConfig": {
     "page-toc": {
@@ -11,13 +10,10 @@
       "showByDefault": true
     },
     "custom-header-next": {
-      "logo":"/images/logo.png",
+      "logo":"/eosjs2/images/logo.png",
       "logo_alt":"EOSIO",
       "text": "EOSJS",
       "navigations": []
-    },
-    "link-fixer": {
-        "link": "https://dskvr.github.io/eosjs2"
     }
-  },
+  }
 }

@@ -1,13 +1,17 @@
 # If there are implementation issues due to non-compliance of patterns, pass in relative paths (from root of typescript project) as positionals.
 
+ABS_PATH=$(pwd)
 # Positionals
-PATH_SOURCE=${1-"./src"} #path to source directory
-PATH_CONFIG=${2-"./.docs"} #path to docs directory
-PATH_DOC_UTIL=${4-$PATH_CONFIG/book} #path to book submodule (TODO: Remove submodule dependency with NPM package)
-PATH_BUILD=${3-"./docs"} #path to build directory
+PATH_SOURCE=${1-"$ABS_PATH/src"} #path to source directory
+PATH_CONFIG=${2-"$ABS_PATH/.docs"} #path to docs directory
+PATH_BUILD=${3-"$ABS_PATH/docs-build"} #path to build directory
 
-PATH_TD_BUILD=$PATH_BUILD/build
-PATH_STATIC=$PATH_CONFIG/static
+PATH_TD_BUILD=$PATH_BUILD
+PATH_STATIC="$ABS_PATH/docs"
+
+
+file=
+echo $file
 
 
 if [ -d "$PATH_BUILD" ]; then
@@ -22,51 +26,54 @@ fi
 
 if [ -d "$PATH_STATIC" ]; then
   ## copy static files into gitbook before
-  cp -a $PATH_CONFIG/static/. $PATH_BUILD/
+  echo "copying static files"
+  cp -a $PATH_STATIC/. $PATH_BUILD/static
 fi
 
 #copy book.json into new build directory
-cp $PATH_DOC_UTIL/book.json $PATH_TD_BUILD/book.json
+cp $PATH_CONFIG/book.json $PATH_TD_BUILD/book.json
 #copy style overrides into new build directory
-cp -R $PATH_DOC_UTIL/theme/styles $PATH_TD_BUILD/styles
+cp -R $PATH_CONFIG/theme/styles $PATH_TD_BUILD/styles
 #copy layout overrides into new build directory
-cp -R $PATH_DOC_UTIL/theme/layout $PATH_TD_BUILD/layout
+cp -R $PATH_CONFIG/theme/layout $PATH_TD_BUILD/layout
 #copy images into new build directory
-cp -R $PATH_DOC_UTIL/theme/images $PATH_TD_BUILD/images
+cp -R $PATH_CONFIG/theme/images $PATH_TD_BUILD/images
 #copy images into new build directory
+
+num = 2
 
 if [ -d "$PATH_STATIC" ]; then
 #Add files to summary
-  line="1"
-  file="$PATH_BUILD/SUMMARY.md"
-  for f in "$dir"/*; do
-    sed -i -e "/^$line$/a"$'\\\n'"[$f]($f)"$'\n' "$file"
+  line=1
+  summary="$PATH_BUILD/SUMMARY.md"
+
+  sed -i.bak '1i\
+  * [1. Readme]( README.md )\
+  ' $summary
+
+  for f in $PATH_BUILD/static/*; do
+    let line+=1
+    filename=$(echo ${f##/*/})
+    prettyname=${filename//-/$'\n'}
+    prettyname=${prettyname//.md/$'\n'}
+    sed -i.bak ''"$line"'i\
+    * ['"$( echo $prettyname )"']('"$( echo static/${f##/*/})"')\
+    ' $summary
   done
+
+  sed -i.bak ''"$line"'i\
+  * **API Reference**\
+  ' $summary
+
 fi
 
-#cd to ./docs/build where typedoc has already been generated and run gitbook install/build
-$PATH_DOC_UTIL/node_modules/.bin/gitbook install $PATH_TD_BUILD
-$PATH_DOC_UTIL/node_modules/.bin/gitbook build $PATH_TD_BUILD
+#run gitbook install/build
+$PATH_CONFIG/node_modules/.bin/gitbook install $PATH_TD_BUILD
+$PATH_CONFIG/node_modules/.bin/gitbook build $PATH_TD_BUILD
 
 # checkout to the gh-pages branch
 git checkout -b gh-pages
 
-# pull the latest updates
-git pull origin gh-pages --rebase
-
-# cp $PATH_DOC_UTIL/theme/index.html ./index.html
+# cp $PATH_CONFIG/theme/index.html ./index.html
 cp -a $PATH_TD_BUILD/_book/. .
-git clean -fx node_modules
-git clean -fx $PATH_BUILD
-
-# add all files
-git add .
-
-# commit
-git commit -a -m "Update docs"
-
-# push to the origin
-git push origin gh-pages
-
-# checkout to the master branch
-git checkout master
+# git clean -fx $PATH_BUILD
