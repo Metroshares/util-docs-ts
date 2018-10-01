@@ -1,5 +1,7 @@
-# EOSIO Book
-Early stages of a documentation convention for EOSIO based repositories. Will be rolled out to support a variety of languages and provide a standardized output. Presently, installation is completed by including a submodule and some scripts. Moving towards an NPM package. 
+_Early stages of a documentation convention for EOSIO based repositories. Will be rolled out to support a variety of languages and provide a standardized output. Presently, installation is completed using a submodule pattern and some scripts. Soon it will be a CLI tool for generating documentation._
+
+# Docs: Typescript
+For implementing EOSIO Docs with Typescript.
 
 # Quickstart
 Open terminal and CD to the root directory of your project.
