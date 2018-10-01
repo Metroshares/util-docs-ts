@@ -6,7 +6,7 @@ PATH_SOURCE=${1-"./src"}
 #path to docs directory
 PATH_DOCS=${2-"./docs"}
 #path to build directory
-PATH_BUILD=${3-$PATH_DOCS/build}
+PATH_BUILD=${3-$PATH_DOCS/dist}
 #path to book submodule (TODO: Remove submodule dependency with NPM package)
 PATH_DOC_UTIL=${4-$PATH_DOCS/book}
 
@@ -40,6 +40,3 @@ fi
 #cd to ./docs/build where typedoc has already been generated and run gitbook install/build
 $PATH_DOC_UTIL/node_modules/.bin/gitbook install $PATH_BUILD
 $PATH_DOC_UTIL/node_modules/.bin/gitbook build $PATH_BUILD
-
-cp -a $BUILD_DIR/. $PATH_DOCS/
-rm -fr $BUILD_DIR
