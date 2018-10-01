@@ -1,5 +1,7 @@
-# EOSIO Book
-Early stages of a documentation convention for EOSIO based repositories. Will be rolled out to support a variety of languages and provide a standardized output. Presently, installation is completed using a submodule pattern and some scripts. Soon it will be a CLI tool for generating documentation.
+_Early stages of a documentation convention for EOSIO based repositories. Will be rolled out to support a variety of languages and provide a standardized output. Presently, installation is completed using a submodule pattern and some scripts. Soon it will be a CLI tool for generating documentation._
+
+# Docs: Typescript
+For implementing EOSIO Docs with Typescript.
 
 # Quickstart
 Open terminal and CD to the root directory of your project.
@@ -21,12 +23,38 @@ git submodule add https://github.com/EOSIO/book-ts.git PATH_CONFIG/book
 ```json
 ...
 "scripts" : {
+  ...
   "PATH_CONFIG": "sh ./PATH_CONFIG/book/scripts/install.sh && sh ./PATH_CONFIG/book/scripts/build-and-serve.sh",
   "PATH_CONFIG-build": "sh ./PATH_CONFIG/book/scripts/build.sh",
   "PATH_CONFIG-serve": "sh ./PATH_CONFIG/book/scripts/serve.sh",
   "PATH_CONFIG-init": "sh ./PATH_CONFIG/book/scripts/init.sh"
 },
 ...
+```
+
+### Add typedoc.json
+
+In the root of your project, modify **name, target, module** as needed.
+```
+{
+  "name": "myproject",
+  "target": "es5",
+  "module": ["es2017","dom"],
+  "ignoreCompilerErrors": true,
+  "includeDeclarations": false,
+  "excludeProtected": true,
+  "excludePrivate": true,
+  "mode": "modules",
+  "out": "docs/build",
+  "theme": "markdown",
+  "mdEngine": "gitbook",
+  "stripExternal": false,
+  "exclude": ["**/index*","**/*.test.ts"],
+  "readme": "README.md",
+  "hideGenerator": "true",
+  "verbose": true,
+  "mdSourceRepo": "https://www.github.com/EOSIO/eosjs2"
+}
 ```
 
 ## Install

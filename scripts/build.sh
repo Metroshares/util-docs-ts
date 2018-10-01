@@ -1,17 +1,12 @@
 # If there are implementation issues due to non-compliance of patterns, pass in relative paths (from root of typescript project) as positionals.
 
 # Positionals
-#path to source directory
-PATH_SOURCE=${1-"./src"}
-#path to docs directory
-PATH_CONFIG=${2-"./.docs"}
-#path to book submodule (TODO: Remove submodule dependency with NPM package)
-PATH_DOC_UTIL=${4-$PATH_CONFIG/book}
-#path to build directory
-PATH_BUILD=${3-"./docs"}
+PATH_SOURCE=${1-"./src"} #path to source directory
+PATH_CONFIG=${2-"./.docs"} #path to docs directory
+PATH_DOC_UTIL=${4-$PATH_CONFIG/book} #path to book submodule (TODO: Remove submodule dependency with NPM package)
+PATH_BUILD=${3-"./docs"} #path to build directory
 
-PATH_TD_BUILD="$PATH_BUILD/build"
-
+PATH_TD_BUILD=$PATH_BUILD/build
 PATH_STATIC=$PATH_CONFIG/static
 
 if [ -d "$PATH_BUILD" ]; then
@@ -53,6 +48,5 @@ $PATH_DOC_UTIL/node_modules/.bin/gitbook install $PATH_TD_BUILD
 $PATH_DOC_UTIL/node_modules/.bin/gitbook build $PATH_TD_BUILD
 
 cp $PATH_DOC_UTIL/theme/index.html ./index.html
-
 cp -a $PATH_TD_BUILD/_book/. $PATH_BUILD
 rm -fr $PATH_TD_BUILD
