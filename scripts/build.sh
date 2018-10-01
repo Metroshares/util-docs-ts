@@ -17,7 +17,7 @@ echo $file
 if [ -d "$PATH_BUILD" ]; then
   ## copy static files into gitbook before
   read -p "Preparing build, sure you want to rm -fr $PATH_BUILD? (press enter, or alt+c to cancel)" -n 1 -r
-  git clean -fx $PATH_BUILD
+  rm -fr $PATH_BUILD book.json styles layout images static modules classes interfaces gitbook
 fi
 
 
@@ -39,8 +39,6 @@ cp -R $PATH_CONFIG/theme/layout $PATH_TD_BUILD/layout
 #copy images into new build directory
 cp -R $PATH_CONFIG/theme/images $PATH_TD_BUILD/images
 #copy images into new build directory
-
-num = 2
 
 if [ -d "$PATH_STATIC" ]; then
 #Add files to summary
@@ -64,7 +62,6 @@ if [ -d "$PATH_STATIC" ]; then
   sed -i.bak ''"$line"'i\
   * **API Reference**\
   ' $summary
-
 fi
 
 #run gitbook install/build

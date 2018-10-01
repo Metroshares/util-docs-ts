@@ -11,7 +11,7 @@ cd ./path/to/project
 
 ## Add submodule
 ```bash
-git submodule add https://github.com/EOSIO/book-ts.git .docs
+git submodule add https://github.com/EOSIO/util-docs-ts.git .docs
 ```
 
 ## Add scripts to project's `package.json`
@@ -19,10 +19,9 @@ git submodule add https://github.com/EOSIO/book-ts.git .docs
 ...
 "scripts" : {
   ...
-  "docs": "sh ./docs/book/scripts/install.sh && sh ./docs/book/scripts/build-and-serve.sh",
-  "docs-build": "sh ./docs/book/scripts/build.sh",
-  "docs-serve": "sh ./docs/book/scripts/serve.sh",
-  "docs-init": "sh ./docs/book/scripts/init.sh"
+  "docs-build": "sh .docs/scripts/build.sh",
+  "docs-serve": "sh .docs/scripts/serve.sh",
+  "docs-init": "sh .docs/scripts/init.sh"
 },
 ...
 ```
@@ -59,18 +58,20 @@ If on TypeScript >= 2.9.1
 ```bash
 npm run docs-init
 ```
-_only run once!_
+_this installs typedoc packages and npm installs the submodule._
 
 If on TypeScript <= 2.9.0
 
 _Presently only support TypeScript 2.9.1+_
 
 ## build
+Build. The previous build will be deleted and replaced
 ```bash
 npm run docs-build
 ```
 
 ## serve locally
+Requires python
 ```bash
 npm run docs-serve
 ```
@@ -78,10 +79,10 @@ npm run docs-serve
 # Conventions
 
 ## docs Filesystem Convention (strict)
-- A `./docs` directory should be in the root directory of your project
-- If you wish to have static markdown files, include them in `./docs/static`, they are ordered alphanumerically, so number the pages to control order.
+- A `./docs` should contain markdown files. Using numbers and capitalization is suggested to control presentation. For example `1.-Hello-World.md`;
 - `./docs/build` directory will be created by build scripts.
 - Compliance is easiest when location of source code is `./src`
+
 ```
 /project
   package.json
@@ -92,8 +93,8 @@ npm run docs-serve
 ```
 
 ## Typescript Versioning
-| `TypeScript >= 2.9.1` | `TypeDoc ^0.12.0` _default_ |
-| `TypeScript <= 2.9.0` | `TypeDoc < 0.12.0 ` |
+* `TypeScript >= 2.9.1 use TypeDoc ^0.12.0` _default_ |
+* `TypeScript <= 2.9.0 use TypeDoc < 0.12.0 ` |
 
 ## Doc Scripts
 
@@ -121,9 +122,9 @@ npm run docs-serve
 
 # Todo
 - Convert Bash setup scripts to JS or GO
-- NPM Package
+- `npm` package
 - Standardize a `eosio.book.json` (Typedoc and gitbook default overwrides)
 - `eosbook init` (replaces `npm run docs-install` and adds scaffolding)
 - Remove Submodule dependencies
 - Standardize language support.
-- Implement a multi-book for suite releases.
+- Implement multi-book for suite releases.
