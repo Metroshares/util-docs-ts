@@ -27,10 +27,9 @@ git submodule add https://github.com/EOSIO/book-ts.git .docs/book
 ```json
 ...
 "scripts" : {
-  "PATH_CONFIG": "sh ./PATH_CONFIG/book/scripts/install.sh && sh ./PATH_CONFIG/book/scripts/build-and-serve.sh",
-  "PATH_CONFIG-build": "sh ./PATH_CONFIG/book/scripts/build.sh",
-  "PATH_CONFIG-serve": "sh ./PATH_CONFIG/book/scripts/serve.sh",
-  "PATH_CONFIG-init": "sh ./PATH_CONFIG/book/scripts/init.sh"
+  "docs-build": "sh ./.docs/book/scripts/build.sh",
+  "docs-serve": "sh ./.docs/book/scripts/serve.sh",
+  "docs-init": "sh ./.docs/book/scripts/init.sh"
 },
 ...
 ```
@@ -40,7 +39,7 @@ git submodule add https://github.com/EOSIO/book-ts.git .docs/book
 If on TypeScript >= 2.9.1
 
 ```bash
-npm run PATH_CONFIG-init
+npm run docs-init
 ```
 _only run once!_
 
@@ -50,28 +49,28 @@ _Presently only support TypeScript 2.9.1+_
 
 ## build
 ```bash
-npm run PATH_CONFIG-build
+npm run docs-build
 ```
 
 ## serve locally
 ```bash
-npm run PATH_CONFIG-serve
+npm run docs-serve
 ```
 
 # Conventions
 
-## PATH_CONFIG Filesystem Convention (strict)
-- A `./PATH_CONFIG` directory should be in the root directory of your project
-- If you wish to have static markdown files, include them in `./PATH_CONFIG/static`, they are ordered alphanumerically, so number the pages to control order.
-- `./PATH_CONFIG/build` directory will be created by build scripts.
+## Docs Filesystem Convention (strict)
+- A `./docs` directory should be in the root directory of your project
+- If you wish to have static markdown files, include them in `./docs/static`, they are ordered alphanumerically, so number the pages to control order.
+- `./docs/build` directory will be created by build scripts.
 - Compliance is easiest when location of source code is `./src`
 ```
-/project
+project/
   package.json
-  /PATH_CONFIG
-    /static
-    /build
-  /src
+  .docs/
+    @book
+    static
+  src/
 ```
 
 ## Typescript Versioning
@@ -82,31 +81,26 @@ npm run PATH_CONFIG-serve
 
 Execute these commands from the root directory of your project.
 
-## AutoRun: Install, Build & Serve
+## Init
 ```
-npm run PATH_CONFIG
-```
-
-## install
-```
-npm run PATH_CONFIG-install
+npm run docs-init
 ```
 
 ## Build
 ```
-npm run PATH_CONFIG-build
+npm run docs-build
 ```
 
-## Serve PATH_CONFIG Locally
+## Serve Docs Locally
 ```
-npm run PATH_CONFIG-serve
+npm run docs-serve
 ```
 
 # Todo
 - Convert Bash setup scripts to JS or GO
 - Compile to Binary
 - Standardize a `eosio.book.json` (Typedoc and gitbook default overwrides)
-- `eosbook init` (replaces `npm run PATH_CONFIG-install` and adds scaffolding)
+- `eosbook init` (replaces `npm run docs-install` and adds scaffolding)
 - Remove Submodule dependencies
 - Standardize language support.
 - Implement a multi-book for suite releases.
