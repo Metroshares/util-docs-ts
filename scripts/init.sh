@@ -5,7 +5,5 @@ PATH_CONFIG=${1-"$ABS_PATH/.docs"}
 
 npm install --no-save typedoc@0.12.0 typedoc-plugin-external-module-name typedoc-plugin-markdown
 
-cp $PATH_CONFIG/book/theme/redirect.html $PATH_CONFIG/index.html
-
-cd $PATH_CONFIG/book
+cd $PATH_CONFIG
 npm install

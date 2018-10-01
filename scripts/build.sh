@@ -68,9 +68,6 @@ fi
 $PATH_CONFIG/node_modules/.bin/gitbook install $PATH_TD_BUILD
 $PATH_CONFIG/node_modules/.bin/gitbook build $PATH_TD_BUILD
 
-# checkout to the gh-pages branch
-git checkout -b gh-pages
-
 # cp $PATH_CONFIG/theme/index.html ./index.html
-cp -a $PATH_TD_BUILD/_book/. .
+
 # git clean -fx $PATH_BUILD
