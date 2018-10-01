@@ -13,6 +13,7 @@
     "custom-header-next": {
       "logo":"/eosjs2/images/logo.png",
       "logo_alt":"EOSIO",
+      "base_path":"/eosjs2",
       "text": "EOSJS",
       "navigations": []
     },
