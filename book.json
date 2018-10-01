@@ -1,7 +1,8 @@
 {
   "plugins": [
     "page-toc",
-    "custom-header-next@git+https://github.com/dskvr/gitbook-plugin-custom-header-next.git"
+    "custom-header-next@git+https://github.com/dskvr/gitbook-plugin-custom-header-next.git",
+    "favicon"
   ],
   "pluginsConfig": {
     "page-toc": {
@@ -14,6 +15,10 @@
       "logo_alt":"EOSIO",
       "text": "EOSJS",
       "navigations": []
+    },
+    "favicon":{
+        "shortcut": "images/favicon.ico",
+        "bookmark": "images/favicon.ico",
     }
   }
 }
