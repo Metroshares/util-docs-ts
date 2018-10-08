@@ -1,4 +1,4 @@
-_An experimental documentation convention for EOSIO based repositories._
+_An experimental documentation convention for EOSIO based repositories. Not suitable for production integration, hard-coded configurations present._
 
 # Docs: Typescript
 For implementing EOSIO Docs with Typescript.
