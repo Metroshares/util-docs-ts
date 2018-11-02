@@ -11,9 +11,9 @@
       "showByDefault": true
     },
     "custom-header-next": {
-      "logo":"/eosjs2/images/logo.png",
+      "logo":"/eosjs/images/logo.png",
       "logo_alt":"EOSIO",
-      "base_path":"/eosjs2",
+      "base_path":"/eosjs",
       "text": "EOSJS",
       "navigations": []
     },
