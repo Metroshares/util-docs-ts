@@ -10,10 +10,6 @@ PATH_TD_BUILD=$PATH_BUILD
 PATH_STATIC="$ABS_PATH/docs"
 
 
-file=
-echo $file
-
-
 if [ -d "$PATH_BUILD" ]; then
   ## copy static files into gitbook before
   read -p "Preparing build, sure you want to rm -fr $PATH_BUILD? (press enter, or alt+c to cancel)" -n 1 -r
@@ -67,6 +63,8 @@ fi
 #run gitbook install/build
 $PATH_CONFIG/node_modules/.bin/gitbook install $PATH_TD_BUILD
 $PATH_CONFIG/node_modules/.bin/gitbook build $PATH_TD_BUILD
+
+touch ./.nojekyll
 
 # cp $PATH_CONFIG/theme/index.html ./index.html
 
